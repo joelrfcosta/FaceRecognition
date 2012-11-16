@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) CustomFaceRecognizer *faceRecognizer;
 @property (nonatomic, strong) NSArray *people;
+@property (nonatomic, strong) NSDictionary *selectedPerson;
 
 @end

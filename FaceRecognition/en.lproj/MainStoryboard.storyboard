@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="1178" y="498"/>
         </scene>
-        <!--View Controller - Capture Images-->
+        <!--Capture Images View Controller - Capture Images-->
         <scene sceneID="o2x-vE-Hgx">
             <objects>
-                <viewController id="TbI-1Z-elj" sceneMemberID="viewController">
+                <viewController id="TbI-1Z-elj" customClass="CaptureImagesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iAv-fH-JBX">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -158,6 +158,9 @@
         </scene>
     </scenes>
     <classes>
+        <class className="CaptureImagesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CaptureImagesViewController.h"/>
+        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>

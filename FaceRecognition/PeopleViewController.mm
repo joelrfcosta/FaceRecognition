@@ -7,6 +7,7 @@
 //
 
 #import "PeopleViewController.h"
+#import "CaptureImagesViewController.h"
 
 @interface PeopleViewController ()
 
@@ -53,7 +54,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //
+    NSInteger row = [indexPath row];
+    self.selectedPerson = [self.people objectAtIndex:row];
+    
+    [self performSegueWithIdentifier:@"CaptureImages" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    CaptureImagesViewController *destination = segue.destinationViewController;
+    
+    if (self.selectedPerson) {
+        destination.personID = [self.selectedPerson objectForKey:@"id"];
+        destination.personName = [self.selectedPerson objectForKey:@"name"];
+    }
 }
 
 @end
