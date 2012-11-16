@@ -10,13 +10,9 @@
 
 @implementation OpenCVData
 
-+ (NSDictionary *)serializeCvMat:(cv::Mat&)cvMat
++ (NSData *)serializeCvMat:(cv::Mat&)cvMat
 {
-    return @{
-        @"data": [[NSData alloc] initWithBytes:cvMat.data length:cvMat.elemSize() * cvMat.total()],
-        @"width": [NSNumber numberWithInt:cvMat.rows],
-        @"height": [NSNumber numberWithInt:cvMat.cols]
-    };
+    return [[NSData alloc] initWithBytes:cvMat.data length:cvMat.elemSize() * cvMat.total()];
 }
 
 + (cv::Mat)dataToMat:(NSData *)data width:(NSNumber *)width height:(NSNumber *)height

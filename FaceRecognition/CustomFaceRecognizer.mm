@@ -7,6 +7,7 @@
 //
 
 #import "CustomFaceRecognizer.h"
+#import "OpenCVData.h"
 
 @implementation CustomFaceRecognizer
 
@@ -111,8 +112,19 @@
 
 - (void)learnFace:(cv::Rect)face ofPersonID:(int)personID fromImage:(cv::Mat&)image
 {
-    cv::Mat faceMatrix = [self pullStandardizedFace:face fromImage:image];
-    //    NSDictionary *serialized = [OpenCVData serializeCvMat:faceMatrix];
+    cv::Mat faceData = [self pullStandardizedFace:face fromImage:image];
+    NSData *serialized = [OpenCVData serializeCvMat:faceData];
+    
+    const char* insertSQL = "INSERT INTO images (person_id, image) VALUES (?, ?)";
+    sqlite3_stmt *statement;
+    
+    if (sqlite3_prepare_v2(_db, insertSQL, -1, &statement, nil) == SQLITE_OK) {
+        sqlite3_bind_int(statement, 1, personID);
+        sqlite3_bind_blob(statement, 2, serialized.bytes, serialized.length, SQLITE_TRANSIENT);
+        sqlite3_step(statement);
+    }
+    
+    sqlite3_finalize(statement);
 }
 
 - (cv::Mat)pullStandardizedFace:(cv::Rect)face fromImage:(cv::Mat&)image
