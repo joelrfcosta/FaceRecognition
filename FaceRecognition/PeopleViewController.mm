@@ -1,5 +1,5 @@
 //
-//  PeopleViewController.m
+//  PeopleViewController.mm
 //  FaceRecognition
 //
 //  Created by Michael Peterson on 2012-11-16.

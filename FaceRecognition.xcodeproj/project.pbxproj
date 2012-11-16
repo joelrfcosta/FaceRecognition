@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C9DEA4C1656631B003DBFB5 /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4B1656631B003DBFB5 /* PeopleViewController.m */; };
-		4C9DEA50165666E2003DBFB5 /* NewPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.m */; };
+		4C0B18CA1656724C00A95B1E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0B18C91656724C00A95B1E /* AVFoundation.framework */; };
+		4C9DEA4C1656631B003DBFB5 /* PeopleViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */; };
+		4C9DEA50165666E2003DBFB5 /* NewPersonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.mm */; };
 		4C9DEA55165668B4003DBFB5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA51165668B4003DBFB5 /* CoreImage.framework */; };
 		4C9DEA56165668B4003DBFB5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA52165668B4003DBFB5 /* CoreMedia.framework */; };
 		4C9DEA57165668B4003DBFB5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA53165668B4003DBFB5 /* CoreVideo.framework */; };
@@ -31,10 +32,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0B18C91656724C00A95B1E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4C9DEA4A1656631B003DBFB5 /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
-		4C9DEA4B1656631B003DBFB5 /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
+		4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PeopleViewController.mm; sourceTree = "<group>"; };
 		4C9DEA4E165666E2003DBFB5 /* NewPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPersonViewController.h; sourceTree = "<group>"; };
-		4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPersonViewController.m; sourceTree = "<group>"; };
+		4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NewPersonViewController.mm; sourceTree = "<group>"; };
 		4C9DEA51165668B4003DBFB5 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		4C9DEA52165668B4003DBFB5 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		4C9DEA53165668B4003DBFB5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -67,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C9DEA5E165668CD003DBFB5 /* libsqlite3.dylib in Frameworks */,
+				4C0B18CA1656724C00A95B1E /* AVFoundation.framework in Frameworks */,
 				4C9DEA5C165668C0003DBFB5 /* Accelerate.framework in Frameworks */,
 				4C9DEA5A165668BB003DBFB5 /* AssetsLibrary.framework in Frameworks */,
 				4C9DEA55165668B4003DBFB5 /* CoreImage.framework in Frameworks */,
@@ -86,6 +89,7 @@
 		4CBE4D691655CAC8004B63D9 = {
 			isa = PBXGroup;
 			children = (
+				4C0B18C91656724C00A95B1E /* AVFoundation.framework */,
 				4CBE4D7E1655CAC8004B63D9 /* FaceRecognition */,
 				4CBE4D771655CAC8004B63D9 /* Frameworks */,
 				4CBE4D751655CAC8004B63D9 /* Products */,
@@ -126,9 +130,9 @@
 				4CBE4D901655CAC8004B63D9 /* MainStoryboard.storyboard */,
 				4CBE4D7F1655CAC8004B63D9 /* Supporting Files */,
 				4C9DEA4A1656631B003DBFB5 /* PeopleViewController.h */,
-				4C9DEA4B1656631B003DBFB5 /* PeopleViewController.m */,
+				4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */,
 				4C9DEA4E165666E2003DBFB5 /* NewPersonViewController.h */,
-				4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.m */,
+				4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.mm */,
 				4C9DEA611656694F003DBFB5 /* CustomFaceRecognizer.h */,
 				4C9DEA621656694F003DBFB5 /* CustomFaceRecognizer.mm */,
 			);
@@ -216,9 +220,9 @@
 			files = (
 				4CBE4D851655CAC8004B63D9 /* main.m in Sources */,
 				4CBE4D891655CAC8004B63D9 /* AppDelegate.m in Sources */,
-				4C9DEA4C1656631B003DBFB5 /* PeopleViewController.m in Sources */,
-				4C9DEA50165666E2003DBFB5 /* NewPersonViewController.m in Sources */,
 				4C9DEA631656694F003DBFB5 /* CustomFaceRecognizer.mm in Sources */,
+				4C9DEA4C1656631B003DBFB5 /* PeopleViewController.mm in Sources */,
+				4C9DEA50165666E2003DBFB5 /* NewPersonViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

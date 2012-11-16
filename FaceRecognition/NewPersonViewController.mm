@@ -1,5 +1,5 @@
 //
-//  NewPersonViewController.m
+//  NewPersonViewController.mm
 //  FaceRecognition
 //
 //  Created by Michael Peterson on 2012-11-16.
@@ -7,6 +7,7 @@
 //
 
 #import "NewPersonViewController.h"
+#import "CustomFaceRecognizer.h"
 
 @interface NewPersonViewController ()
 
@@ -21,8 +22,10 @@
 
 - (IBAction)savePerson:(id)sender
 {
-    NSLog(@"%@", self.nameField.text);
-    // save it into db
+    CustomFaceRecognizer *faceRecognizer = [[CustomFaceRecognizer alloc] init];
+    [faceRecognizer newPersonWithName:self.nameField.text];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
