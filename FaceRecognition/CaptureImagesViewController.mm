@@ -27,6 +27,13 @@
     self.instructionsLabel.text = [NSString stringWithFormat:instructions, self.personName];
     
     [self setupCamera];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Instructions"
+                                                    message:@"When the camera starts, move it around to show different angles of your face."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)setupCamera
@@ -42,8 +49,8 @@
 
 - (void)processImage:(cv::Mat&)image
 {
-    // Only process every 30th frame (every 1s)
-    if (self.frameNum == 30) {
+    // Only process every 60th frame (every 2s)
+    if (self.frameNum == 60) {
         [self parseFaces:[self.faceDetector facesFromImage:image] forImage:image];
         self.frameNum = 1;
     }
@@ -65,8 +72,24 @@
     // Learn it
 //    [self.faceRecognizer learnFace:face ofPersonID:[self.personID intValue] fromImage:image];
     
+    self.numPicsTaken++;
+    
     dispatch_sync(dispatch_get_main_queue(), ^{
         [self highlightFace:[OpenCVData faceToCGRect:face]];
+        self.instructionsLabel.text = [NSString stringWithFormat:@"Taken %d of 10", self.numPicsTaken];
+        
+        if (self.numPicsTaken == 10) {
+            self.featureLayer.hidden = YES;
+            [self.videoCamera stop];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Done"
+                                                            message:@"10 pictures have been taken."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     });
 }
 
@@ -92,7 +115,10 @@
 
 - (IBAction)cameraButtonClicked:(id)sender
 {
+    self.numPicsTaken = 0;
     [self.videoCamera start];
+    self.cameraButton.hidden = YES;
+    self.instructionsLabel.text = @"Taking pictures...";
 }
 
 @end
