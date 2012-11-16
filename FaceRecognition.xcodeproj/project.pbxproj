@@ -12,6 +12,7 @@
 		4C0B18D116568A3800A95B1E /* FaceDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18D016568A3800A95B1E /* FaceDetector.mm */; };
 		4C0B18D416568BAA00A95B1E /* OpenCVData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18D316568BAA00A95B1E /* OpenCVData.mm */; };
 		4C0B18D61656944400A95B1E /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */; };
+		4C0B18DD16569E3200A95B1E /* RecognizeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C0B18DC16569E3100A95B1E /* RecognizeViewController.mm */; };
 		4C9DEA4C1656631B003DBFB5 /* PeopleViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */; };
 		4C9DEA50165666E2003DBFB5 /* NewPersonViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DEA4F165666E2003DBFB5 /* NewPersonViewController.mm */; };
 		4C9DEA55165668B4003DBFB5 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9DEA51165668B4003DBFB5 /* CoreImage.framework */; };
@@ -44,6 +45,8 @@
 		4C0B18D216568BAA00A95B1E /* OpenCVData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVData.h; sourceTree = "<group>"; };
 		4C0B18D316568BAA00A95B1E /* OpenCVData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVData.mm; sourceTree = "<group>"; };
 		4C0B18D51656944400A95B1E /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
+		4C0B18DB16569E3100A95B1E /* RecognizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognizeViewController.h; sourceTree = "<group>"; };
+		4C0B18DC16569E3100A95B1E /* RecognizeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RecognizeViewController.mm; sourceTree = "<group>"; };
 		4C9DEA4A1656631B003DBFB5 /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
 		4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PeopleViewController.mm; sourceTree = "<group>"; };
 		4C9DEA4E165666E2003DBFB5 /* NewPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPersonViewController.h; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 		4C0B18CE1656780900A95B1E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4C0B18DB16569E3100A95B1E /* RecognizeViewController.h */,
+				4C0B18DC16569E3100A95B1E /* RecognizeViewController.mm */,
 				4C9DEA4A1656631B003DBFB5 /* PeopleViewController.h */,
 				4C9DEA4B1656631B003DBFB5 /* PeopleViewController.mm */,
 				4C9DEA4E165666E2003DBFB5 /* NewPersonViewController.h */,
@@ -253,6 +258,7 @@
 				4C0B18CD1656766400A95B1E /* CaptureImagesViewController.mm in Sources */,
 				4C0B18D116568A3800A95B1E /* FaceDetector.mm in Sources */,
 				4C0B18D416568BAA00A95B1E /* OpenCVData.mm in Sources */,
+				4C0B18DD16569E3200A95B1E /* RecognizeViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

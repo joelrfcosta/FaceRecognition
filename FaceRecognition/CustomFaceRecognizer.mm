@@ -74,40 +74,47 @@
     return results;
 }
 
-- (void)trainModel
+- (BOOL)trainModel
 {
     std::vector<cv::Mat> images;
     std::vector<int> labels;
     
-    // For each image, grab data, label, etc
-    //    Mat finalFace = [OpenCVData dataToMat:[serialized objectForKey:@"data"]
-    //                                    width:[serialized objectForKey:@"width"]
-    //                                   height:[serialized objectForKey:@"height"]];
-    // feed it into the vectors
+    const char* selectSQL = "SELECT person_id, image FROM images";
+    sqlite3_stmt *statement;
     
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s1a.jpg"]]);
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s1b.jpg"]]);
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s1c.jpg"]]);
-//    labels.push_back(0);
-//    labels.push_back(0);
-//    labels.push_back(0);
-//    
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s2a.jpg"]]);
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s2b.jpg"]]);
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s2c.jpg"]]);
-//    labels.push_back(1);
-//    labels.push_back(1);
-//    labels.push_back(1);
-//    
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s3a.jpg"]]);
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s3b.jpg"]]);
-//    images.push_back([OpenCVData cvMatFromUIImage:[UIImage imageNamed:@"s3c.jpg"]]);
-//    labels.push_back(2);
-//    labels.push_back(2);
-//    labels.push_back(2);
+    if (sqlite3_prepare_v2(_db, selectSQL, -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int personID = sqlite3_column_int(statement, 0);
+            
+            // First pull out the image into NSData
+            int imageSize = sqlite3_column_bytes(statement, 1);
+            NSData *imageData = [NSData dataWithBytes:sqlite3_column_blob(statement, 1) length:imageSize];
+            
+            // Then convert NSData to a cv::Mat
+            cv::Mat faceData = [OpenCVData dataToMat:imageData
+                                               width:[NSNumber numberWithInt:100]
+                                              height:[NSNumber numberWithInt:100]];
+            
+            // Put this image into the model
+            images.push_back(faceData);
+            labels.push_back(personID);
+        }
+    }
     
-    // Only initilaize if length > 0
-    _model->train(images, labels);
+    sqlite3_finalize(statement);
+    
+    if (images.size() > 0 && labels.size() > 0) {
+        _model->train(images, labels);
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+- (void)forgetAllFacesForPersonID:(int)personID
+{
+    // DELETE FROM
 }
 
 - (void)learnFace:(cv::Rect)face ofPersonID:(int)personID fromImage:(cv::Mat&)image

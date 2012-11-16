@@ -70,7 +70,7 @@
     cv::Rect face = faces[0];
     
     // Learn it
-//    [self.faceRecognizer learnFace:face ofPersonID:[self.personID intValue] fromImage:image];
+    [self.faceRecognizer learnFace:face ofPersonID:[self.personID intValue] fromImage:image];
     
     self.numPicsTaken++;
     
