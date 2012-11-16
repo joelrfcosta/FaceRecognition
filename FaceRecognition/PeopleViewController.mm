@@ -14,11 +14,18 @@
 
 @implementation PeopleViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.faceRecognizer = [[CustomFaceRecognizer alloc] init];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    // load all people from db
+    self.people = [self.faceRecognizer getAllPeople];
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -28,15 +35,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return [self.people count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSInteger row = [indexPath row];
+    
     static NSString *CellIdentifier = @"PersonCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    NSDictionary *person = [self.people objectAtIndex:row];
+    cell.textLabel.text = [person objectForKey:@"name"];
     
     return cell;
 }

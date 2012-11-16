@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomFaceRecognizer.h"
 
 @interface PeopleViewController : UITableViewController
+
+@property (nonatomic, strong) CustomFaceRecognizer *faceRecognizer;
+@property (nonatomic, strong) NSArray *people;
 
 @end

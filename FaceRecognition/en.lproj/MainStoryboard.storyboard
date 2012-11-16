@@ -19,10 +19,10 @@
             </objects>
             <point key="canvasLocation" x="644" y="-195"/>
         </scene>
-        <!--Table View Controller - People-->
+        <!--People View Controller - People-->
         <scene sceneID="F64-bp-Amc">
             <objects>
-                <tableViewController id="a6q-kA-3BH" sceneMemberID="viewController">
+                <tableViewController id="a6q-kA-3BH" customClass="PeopleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="d9d-hX-h4V">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,7 +141,7 @@
         <scene sceneID="hs4-sz-kuc">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="bP0-Rv-605" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="4yS-mE-uz5">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -167,6 +167,9 @@
                 <relationship kind="action" name="savePerson:"/>
                 <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
             </relationships>
+        </class>
+        <class className="PeopleViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
