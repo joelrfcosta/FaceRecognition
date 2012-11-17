@@ -152,8 +152,27 @@
     double confidence = 0.0;
     _model->predict([self pullStandardizedFace:face fromImage:image], predictedLabel, confidence);
     
+    NSString *personName = @"";
+    
+    // If a match was found, lookup the person's name
+    if (predictedLabel != -1) {
+        const char* selectSQL = "SELECT name FROM people WHERE id = ?";
+        sqlite3_stmt *statement;
+        
+        if (sqlite3_prepare_v2(_db, selectSQL, -1, &statement, nil) == SQLITE_OK) {
+            sqlite3_bind_int(statement, 1, predictedLabel);
+            
+            if (sqlite3_step(statement) != SQLITE_DONE) {
+                personName = [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 0)];
+            }
+        }
+        
+        sqlite3_finalize(statement);
+    }
+    
     return @{
-        @"label": [NSNumber numberWithInt:predictedLabel],
+        @"personID": [NSNumber numberWithInt:predictedLabel],
+        @"personName": personName,
         @"confidence": [NSNumber numberWithDouble:confidence]
     };
 }
