@@ -9,6 +9,10 @@
 #import "RecognizeViewController.h"
 #import "OpenCVData.h"
 
+
+#define CAPTURE_FPS 30
+
+
 @interface RecognizeViewController ()
 
 @end
@@ -38,7 +42,7 @@
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultFPS = 30;
+    self.videoCamera.defaultFPS = CAPTURE_FPS;
     self.videoCamera.grayscaleMode = NO;
     
     [self.videoCamera start];
@@ -46,14 +50,13 @@
 
 - (void)processImage:(cv::Mat&)image
 {
-    // Only process every 30th frame (every 1s)
-    if (self.frameNum == 30) {
+    // Only process every CAPTURE_FPS'th frame (every 1s)
+    if (self.frameNum == CAPTURE_FPS) {
         [self parseFaces:[self.faceDetector facesFromImage:image] forImage:image];
-        self.frameNum = 1;
+        self.frameNum = 0;
     }
-    else {
-        self.frameNum++;
-    }
+    
+    self.frameNum++;
 }
 
 - (void)parseFaces:(const std::vector<cv::Rect> &)faces forImage:(cv::Mat&)image
