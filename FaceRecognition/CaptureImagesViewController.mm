@@ -115,6 +115,10 @@
 
 - (IBAction)cameraButtonClicked:(id)sender
 {
+    // First, forget all previous pictures of this person
+    [self.faceRecognizer forgetAllFacesForPersonID:[self.personID integerValue]];
+    
+    // Reset the counter, start taking pictures
     self.numPicsTaken = 0;
     [self.videoCamera start];
     self.cameraButton.hidden = YES;

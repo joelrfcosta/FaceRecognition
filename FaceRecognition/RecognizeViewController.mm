@@ -26,13 +26,26 @@
     self.faceDetector = [[FaceDetector alloc] init];
     self.faceRecognizer = [[CustomFaceRecognizer alloc] init];
     
+    [self setupCamera];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // Re-train the model in case more pictures were added
     self.modelAvailable = [self.faceRecognizer trainModel];
     
     if (!self.modelAvailable) {
         self.instructionLabel.text = @"Add people in the database first";
     }
     
-    [self setupCamera];
+    [self.videoCamera start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.videoCamera stop];
 }
 
 - (void)setupCamera
@@ -44,8 +57,6 @@
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = CAPTURE_FPS;
     self.videoCamera.grayscaleMode = NO;
-    
-    [self.videoCamera start];
 }
 
 - (void)processImage:(cv::Mat&)image
@@ -115,8 +126,9 @@
     if (self.featureLayer == nil) {
         self.featureLayer = [[CALayer alloc] init];
         self.featureLayer.borderWidth = 4.0;
-        [self.imageView.layer addSublayer:self.featureLayer];
     }
+    
+    [self.imageView.layer addSublayer:self.featureLayer];
     
     self.featureLayer.hidden = NO;
     self.featureLayer.borderColor = color;

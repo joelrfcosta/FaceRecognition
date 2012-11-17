@@ -35,7 +35,7 @@
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [paths objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:@"training-data.sql"];
+    return [documentDirectory stringByAppendingPathComponent:@"training-data.sqlite"];
 }
 
 - (int)newPersonWithName:(NSString *)name
@@ -90,7 +90,7 @@
             int imageSize = sqlite3_column_bytes(statement, 1);
             NSData *imageData = [NSData dataWithBytes:sqlite3_column_blob(statement, 1) length:imageSize];
             
-            // Then convert NSData to a cv::Mat
+            // Then convert NSData to a cv::Mat. Images are standardized into 100x100
             cv::Mat faceData = [OpenCVData dataToMat:imageData
                                                width:[NSNumber numberWithInt:100]
                                               height:[NSNumber numberWithInt:100]];
@@ -114,7 +114,15 @@
 
 - (void)forgetAllFacesForPersonID:(int)personID
 {
-    // DELETE FROM
+    const char* deleteSQL = "DELETE FROM images WHERE person_id = ?";
+    sqlite3_stmt *statement;
+    
+    if (sqlite3_prepare_v2(_db, deleteSQL, -1, &statement, nil) == SQLITE_OK) {
+        sqlite3_bind_int(statement, 1, personID);
+        sqlite3_step(statement);
+    }
+    
+    sqlite3_finalize(statement);
 }
 
 - (void)learnFace:(cv::Rect)face ofPersonID:(int)personID fromImage:(cv::Mat&)image
