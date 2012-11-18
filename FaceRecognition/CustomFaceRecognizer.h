@@ -16,6 +16,9 @@
     cv::Ptr<cv::FaceRecognizer> _model;
 }
 
+- (id)initWithEigenFaceRecognizer;
+- (id)initWithFisherFaceRecognizer;
+- (id)initWithLBPHFaceRecognizer;
 - (int)newPersonWithName:(NSString *)name;
 - (NSMutableArray *)getAllPeople;
 - (BOOL)trainModel;

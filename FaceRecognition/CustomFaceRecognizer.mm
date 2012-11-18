@@ -16,8 +16,31 @@
     self = [super init];
     if (self) {
         [self loadDatabase];
-        _model = cv::createLBPHFaceRecognizer();
     }
+    
+    return self;
+}
+
+- (id)initWithEigenFaceRecognizer
+{
+    self = [self init];
+    _model = cv::createEigenFaceRecognizer();
+    
+    return self;
+}
+
+- (id)initWithFisherFaceRecognizer
+{
+    self = [self init];
+    _model = cv::createFisherFaceRecognizer();
+    
+    return self;
+}
+
+- (id)initWithLBPHFaceRecognizer
+{
+    self = [self init];
+    _model = cv::createLBPHFaceRecognizer();
     
     return self;
 }

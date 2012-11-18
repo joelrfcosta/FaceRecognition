@@ -24,7 +24,7 @@
     [super viewDidLoad];
 	
     self.faceDetector = [[FaceDetector alloc] init];
-    self.faceRecognizer = [[CustomFaceRecognizer alloc] init];
+    self.faceRecognizer = [[CustomFaceRecognizer alloc] initWithEigenFaceRecognizer];
     
     [self setupCamera];
 }
